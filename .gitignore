@@ -1,6 +1,4 @@
 print.c
 main1.c
 binary_trees_print.c
-101-binary_tree_levelorder.c
-./test/main20.c
-queue.c
+102-binary_tree_is_complete.c
