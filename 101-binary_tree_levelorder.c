@@ -24,7 +24,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	{
 		binary_tree_t *node = arr[i++];
 		int val;
-		
+
 		j++;
 		if (!node)
 			continue;
