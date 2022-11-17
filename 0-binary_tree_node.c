@@ -18,7 +18,7 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 	{
 		free(node);
 		node = NULL;
-		return (parent);
+		return (NULL);
 	}
 
 	node->n = value;

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= -Wall -Wextra -Werror -pedantic -std=gnu89
+CFLAGS= -g -Wall -Wextra -Werror -pedantic -std=gnu89
 CFILES=$(wildcard *.c)
 BIN=out
 
