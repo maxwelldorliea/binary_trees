@@ -11,10 +11,12 @@
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	binary_tree_t *arr[1024];
-	int i = 0, j = 0;
+	int i = 0, j = 0, k = 0;
 
 	if (!tree || !func)
 		return;
+	while (k < 1024)
+		arr[k++] = NULL;
 
 	arr[i] = (binary_tree_t *)tree;
 
@@ -24,7 +26,6 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 		int val;
 		
 		j++;
-
 		if (!node)
 			continue;
 		val = node->n;
