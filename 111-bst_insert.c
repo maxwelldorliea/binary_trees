@@ -19,9 +19,9 @@ bst_t *bst_insert(bst_t **tree, int value)
 
 	curr = *tree;
 
-	if (curr->left && curr->left->n < curr->n)
+	if (curr->left && value > curr->n)
 		curr->left = bst_insert(&(curr->left), value);
-	else if (curr->right && curr->right->n > curr->n)
+	else if (curr->right && value < curr->n)
 		curr->right = bst_insert(&(curr->right), value);
 	return (*tree);
 }
