@@ -8,36 +8,28 @@
  * Return: the ancestor found or NULL
  */
 
+
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		const binary_tree_t *second)
 {
-	binary_tree_t *first_parent, *second_parent;
+	binary_tree_t *tmp;
 
 	if (!first || !second)
 		return (NULL);
 
-	first_parent = first->parent;
-	second_parent = second->parent;
+	tmp = (binary_tree_t *)second;
 
-	if (first_parent == second)
-		return ((binary_tree_t *)second);
-	if (second_parent == first)
-		return ((binary_tree_t *)first);
-
-	while (first_parent)
+	while (first)
 	{
-		while (second_parent)
+		while (second)
 		{
-			if (first_parent == second_parent)
-				return (first_parent);
-			second_parent = second_parent->parent;
+			if (first == second)
+				return ((binary_tree_t *)first);
+			second = second->parent;
 		}
-		second_parent = second->parent;
-		first_parent = first_parent->parent;
+		second = tmp;
+		first = first->parent;
 	}
 
-	if (!second_parent || !first_parent)
-		return (NULL);
-
-	return (first_parent);
+	return (NULL);
 }
