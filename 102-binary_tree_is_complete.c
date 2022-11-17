@@ -1,45 +1,48 @@
 #include "binary_trees.h"
-
-
-/**
- * is_perfect - checks if a binary tree is perfect
- * @tree: root of the tree
- * @level: the level of the tree
- * @depth: the depth
- * Return: 1 or 0 on failure
- */
-
-int is_complete(const binary_tree_t *tree, int level, int depth)
-{
-	if (!tree)
-		return (0);
-	if (!(tree->left) && !(tree->right))
-		return (level + 1 >= depth);
-	return (is_complete(tree->left, level + 1, depth) &&
-			is_complete(tree->right, level + 1, depth));
-}
-
+#include <stdlib.h>
 
 /**
- * binary_tree_is_perfect - checks if a binary tree is perfect
+ * binary_tree_is_complete - check is a binary tree is complete
  * @tree: root of the tree
- * Return: 1 or 0 on failure
+ * Return: 1 if true or 0 if false
  */
 
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	int depth = 0, level = 0;
-	const binary_tree_t *saved_tree = tree;
+	binary_tree_t *arr[1024];
+	int i = 0, j = 0, k = 0, end = 0;
 
 	if (!tree)
 		return (0);
-	while (tree)
-	{
-		depth++;
-		tree = tree->left;
-	}
-	depth--;
+	while (k < 1024)
+		arr[k++] = NULL;
 
-	tree = saved_tree;
-	return (is_complete(tree, level, depth));
+	arr[i] = (binary_tree_t *)tree;
+
+	while (arr[i])
+	{
+		binary_tree_t *node = arr[i++];
+
+		j++;
+		if (!node)
+			continue;
+		if (node->left)
+		{
+			if (end)
+				return (0);
+			arr[j++] = node->left;
+		}
+		else
+			end = 1;
+		if (node->right)
+		{
+			if (end)
+				return (0);
+			arr[j] = node->right;
+		}
+		else
+			end = 1;
+	}
+
+	return (1);
 }
