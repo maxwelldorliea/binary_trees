@@ -10,27 +10,28 @@
 
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	queue *h = NULL, *t = NULL;
+	binary_tree_t *arr[1024];
+	int i = 0, j = 0;
 
 	if (!tree || !func)
 		return;
 
-	push(&h, &t, (binary_tree_t *)tree);
+	arr[i] = (binary_tree_t *)tree;
 
-	while (h != NULL)
+	while (arr[i])
 	{
-		queue *node;
+		binary_tree_t *node = arr[i++];
 		int val;
+		
+		j++;
 
-		node = pop(&h, &t);
 		if (!node)
 			continue;
-		val = node->val->n;
+		val = node->n;
 		func(val);
-		if (node->val->left)
-			push(&h, &t, node->val->left);
-		if (node->val->right)
-			push(&h, &t, node->val->right);
-		pop_del(&node, &t);
+		if (node->left)
+			arr[j++] = node->left;
+		if (node->right)
+			arr[j] = node->right;
 	}
 }
