@@ -8,13 +8,11 @@
 
 binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
-	int sibling_val;
 	const binary_tree_t *sibling_parent;
 
 	if (!node)
 		return (NULL);
 
-	sibling_val = node->n;
 	sibling_parent = node->parent;
 
 	if (!sibling_parent)
